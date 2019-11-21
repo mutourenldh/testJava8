@@ -57,19 +57,15 @@ public class TestLocalDateTime {
 	@Test
 	public void test3(){
 		Instant ins1 = Instant.now();
-
 		try {
 			Thread.sleep(1000L);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
 		Instant ins2 = Instant.now();
 		//Duration 计算两个时间之间的间隔
 		Duration between = Duration.between(ins1, ins2);
 		System.out.println(between.toMillis());
-
-
 		System.out.println("-------------------------");
 		LocalTime date1 = LocalTime.now();
 		try {
@@ -88,7 +84,6 @@ public class TestLocalDateTime {
 		LocalDate date2 = LocalDate.now();
 		Period between = Period.between(date1, date2);
 		System.out.println(between);
-
 		System.out.println(between.getYears());
 		System.out.println(between.getMonths());
 		System.out.println(between.getDays());
@@ -105,7 +100,7 @@ public class TestLocalDateTime {
 
 		LocalDateTime ldt2 = ldt1.withDayOfMonth(10);
 		System.out.println(ldt2);
-
+		//获取当前日期的下一个周日
 		LocalDateTime ldt3 = ldt1.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
 		System.out.println(ldt3);
 
@@ -146,17 +141,15 @@ public class TestLocalDateTime {
 	//Zoneld:该类中包含了所有时区的信息
 	//getAvailableZonelds() 可以获取所有时区信息
 	//of(id) 用指定的时区信息获取Zoneld对象
-@Test
+	@Test
 	public void test7(){
 		Set<String> set = ZoneId.getAvailableZoneIds();
 		set.forEach(System.out::println);
 	}
-
 	@Test
 	public void test8(){
 		LocalDateTime ldt = LocalDateTime.now(ZoneId.of("Europe/Tallinn"));
 		System.out.println(ldt);
-
 		ZonedDateTime zonedDateTime = ldt.atZone(ZoneId.of("Asia/Shanghai"));
 		System.out.println(zonedDateTime);
 	}
